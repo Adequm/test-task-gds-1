@@ -14,7 +14,7 @@
         class="todos__header_submit"
         type="submit"
       >
-        <img src="/img/plus.svg"/>
+        <img src="img/plus.svg"/>
       </button>
     </form>
 
@@ -35,7 +35,7 @@
         </div>
       </template>
       <div v-else class="todos__body_empty">
-        <img src="/img/rain.svg"/>
+        <img src="img/rain.svg"/>
         <span>Todos list is empty</span>
       </div>
     </ul>
@@ -66,7 +66,7 @@
         class="todos__footer_filters-switch"
         @click="isOpenFiltersList = !isOpenFiltersList"
       >
-        <img src="/img/filter.svg"/>
+        <img src="img/filter.svg"/>
       </div>
 
       <button 
