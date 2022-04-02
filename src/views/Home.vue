@@ -1,18 +1,95 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <TheTodosManager
+      :todosFiltred="todosFiltred"
+      :todoFilterType="todoFilterType"
+      :filtersTypesList="filtersTypesList"
+      :todosActiveLength="todosActiveLength"
+      :todosCompletedLength="todosCompletedLength"
+      :style="{ height: appHeight }"
+      @addTodo="addTodo"
+      @switchCompleteStatusTodoById="switchCompleteStatusTodoById"
+      @setTodoFilterType="setTodoFilterType"
+      @clearCompleted="clearCompletedTodos"
+    />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import TheTodosManager from '@/components/TheTodosManager';
 
+import { mapState, mapGetters, mapMutations } from 'vuex';
 export default {
   name: 'Home',
+
   components: {
-    HelloWorld
+    TheTodosManager,
+  },
+
+  data: () => ({
+    isWidthLess768: false,
+    innerHeight: 0,
+  }),
+
+  computed: {
+    ...mapState([
+      'todoFilterType',
+      'filtersTypesList',
+    ]),
+    ...mapGetters([
+      'todosFiltred',
+      'todosActiveLength',
+      'todosCompletedLength',
+    ]),
+    appHeight() {
+      return this.isWidthLess768
+        ? `${ this.innerHeight }px`
+        : '100%';
+    },
+  },
+
+  beforeMount() {
+    const updateInnerSize = () => {
+      if(!document.body.offsetWidth) return;
+      this.isWidthLess768 = document.body.offsetWidth <= 768;
+      this.innerHeight = innerHeight;
+    }
+
+    updateInnerSize();
+    window.addEventListener('resize', updateInnerSize);
+  },
+
+  methods: {
+    ...mapMutations([
+      'addTodo',
+      'switchCompleteStatusTodoById',
+      'setTodoFilterType',
+      'clearCompletedTodos',
+    ]),
+  },
+};
+</script>
+
+<style>
+*, *::after, *::before {
+  box-sizing: border-box;
+  margin: 0;
+}
+body {
+  background-color: #fafafa;
+  overflow: hidden;
+}
+</style>
+
+<style lang="scss" scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 100px 0;
+}
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0;
   }
 }
-</script>
+</style>
