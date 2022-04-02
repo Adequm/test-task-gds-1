@@ -6,6 +6,7 @@
       :filtersTypesList="filtersTypesList"
       :todosActiveLength="todosActiveLength"
       :todosCompletedLength="todosCompletedLength"
+      :todosFiltredLength="todosFiltredLength"
       :style="{ height: appHeight }"
       @addTodo="addTodo"
       @switchCompleteStatusTodoById="switchCompleteStatusTodoById"
@@ -40,6 +41,7 @@ export default {
       'todosFiltred',
       'todosActiveLength',
       'todosCompletedLength',
+      'todosFiltredLength',
     ]),
     appHeight() {
       return this.isWidthLess768

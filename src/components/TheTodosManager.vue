@@ -19,7 +19,7 @@
     </form>
 
     <ul class="todos__body">
-      <template v-if="todosActiveLength + todosCompletedLength">
+      <template v-if="todosFiltredLength">
         <div class="todos__body_scroll">
           <li
             v-for="todo of todosFiltred"
@@ -110,6 +110,10 @@ export default {
       type: Number,
       default: () => 0,
     },
+    todosFiltredLength: {
+      type: Number,
+      default: () => 0,
+    }
   },
 
   data: () => ({

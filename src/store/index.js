@@ -25,6 +25,7 @@ store.getters = {
     if(_.includes(['all', 'completed'], todoFilterType)) _.assign(todosFiltred, todosCompleted);
     return todosFiltred;
   },
+  todosFiltredLength: ({}, getters) => _.size(getters.todosFiltred),
 };
 
 
